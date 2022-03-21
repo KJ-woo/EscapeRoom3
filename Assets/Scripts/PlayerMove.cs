@@ -7,12 +7,19 @@ public class PlayerMove : MonoBehaviour
     public float Speed;
     Rigidbody2D rigid;
     Animator anim;
+    private BoxCollider2D boxCollider;
+    public LayerMask LayerMask;
     bool isHorizonMove;// 수평 이동 판단 여부
     float h;
     float v;
     Vector3 dirVec;
-    private void Awake()
+
+    
+
+    GameObject scanObject;
+    private void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -58,15 +65,31 @@ public class PlayerMove : MonoBehaviour
             dirVec = Vector3.right;
         else if (vDown && h == -1)
             dirVec = Vector3.left;
+
+        //스페이스바로 오브젝트와의 상호작용
+        if(Input.GetButtonDown("Jump") && scanObject !=null)
+        {
+            //Debug.Log(scanObject.name); //확인용
+        }
     }
     void FixedUpdate()
     {
+
         Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) : new Vector2(0, v);
+
+
         rigid.velocity = moveVec * Speed;
 
         //레이캐스트 작동하는지 확인
         //Debug.DrawRay(rigid.position, dirVec * 0.6f, new Color(1, 0, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.6f, LayerMask.GetMask("Object"));
+
+        if (rayHit.collider != null)//만약 뭔가 발견하면
+        {
+            scanObject = rayHit.collider.gameObject;
+        }
+        else
+            scanObject = null;
     }
 
 }
