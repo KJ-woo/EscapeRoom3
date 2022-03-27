@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public float Speed;
@@ -14,7 +14,8 @@ public class PlayerMove : MonoBehaviour
     float v;
     Vector3 dirVec;
 
-    
+    public TextManager manager;
+    public Text talkText;
 
     GameObject scanObject;
     private void Start()
@@ -37,17 +38,21 @@ public class PlayerMove : MonoBehaviour
         bool vDown = Input.GetButtonDown("Vertical");
         bool vUp = Input.GetButtonUp("Vertical");
 
-        if (vUp || hDown)
+        if (hDown)
             isHorizonMove = true;
-        else if (vDown || hUp)
+        else if (vDown)
             isHorizonMove = false;
+        else if (hUp || vUp)
+            isHorizonMove = h != 0;
 
-        if (anim.GetInteger("VAxisRaw") != v)
+
+        if (anim.GetInteger("VAxisRaw") != v)//상하키 눌렀을 때
         {
             anim.SetBool("Change", true);
             anim.SetInteger("VAxisRaw", (int)v);
         }
-        else if (anim.GetInteger("HAxisRaw") != h)
+
+        else if (anim.GetInteger("HAxisRaw") != h) // 좌우키 눌렀을때
         {
             anim.SetBool("Change", true);
             anim.SetInteger("HAxisRaw", (int)h);
@@ -61,15 +66,16 @@ public class PlayerMove : MonoBehaviour
             dirVec = Vector3.up;
         else if (vDown && v == -1)
             dirVec = Vector3.down;
-        else if (vDown && h == 1)
+        else if (hDown && h == 1)
             dirVec = Vector3.right;
-        else if (vDown && h == -1)
+        else if (hDown && h == -1)
             dirVec = Vector3.left;
 
         //스페이스바로 오브젝트와의 상호작용
-        if(Input.GetButtonDown("Jump") && scanObject !=null)
+        if (Input.GetButtonDown("Jump") && scanObject != null)
         {
-            //Debug.Log(scanObject.name); //확인용
+            if(scanObject.layer == LayerMask.NameToLayer("DummyObject"))
+                talkText.text = "나에겐 필요없는 것 같다... 다른걸 찾아보자.....";
         }
     }
     void FixedUpdate()
@@ -81,8 +87,8 @@ public class PlayerMove : MonoBehaviour
         rigid.velocity = moveVec * Speed;
 
         //레이캐스트 작동하는지 확인
-        //Debug.DrawRay(rigid.position, dirVec * 0.6f, new Color(1, 0, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.6f, LayerMask.GetMask("Object"));
+        Debug.DrawRay(rigid.position, dirVec * 0.9f, new Color(1, 0, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.9f, LayerMask.GetMask("Object"));
 
         if (rayHit.collider != null)//만약 뭔가 발견하면
         {
