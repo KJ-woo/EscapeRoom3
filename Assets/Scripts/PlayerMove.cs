@@ -4,20 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
+    public GameManager manager;
+
     public float Speed;
     Rigidbody2D rigid;
     Animator anim;
     private BoxCollider2D boxCollider;
-    public LayerMask LayerMask;
+
+
     bool isHorizonMove;// 수평 이동 판단 여부
     float h;
     float v;
     Vector3 dirVec;
 
-    public TextManager manager;
-    public Text talkText;
-
+    public Text talkText; //UI대화창 텍스트
+    public GameObject talkPanel;
+    public int textIndex = 0;//순차적으로 대화창을 출력하기위한 변수
     GameObject scanObject;
+
+
+
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -29,14 +35,14 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");//좌우
-        v = Input.GetAxisRaw("Vertical");//상하
+        h = manager.isExecution ? 0 : Input.GetAxisRaw("Horizontal");//좌우
+        v = manager.isExecution ? 0 : Input.GetAxisRaw("Vertical");//상하
 
-        bool hDown = Input.GetButtonDown("Horizontal");
-        bool hUp = Input.GetButtonUp("Horizontal");
+        bool hDown = manager.isExecution ? false : Input.GetButtonDown("Horizontal");
+        bool hUp = manager.isExecution ? false : Input.GetButtonUp("Horizontal");
 
-        bool vDown = Input.GetButtonDown("Vertical");
-        bool vUp = Input.GetButtonUp("Vertical");
+        bool vDown = manager.isExecution ? false : Input.GetButtonDown("Vertical");
+        bool vUp = manager.isExecution ? false : Input.GetButtonUp("Vertical");
 
         if (hDown)
             isHorizonMove = true;
@@ -73,10 +79,8 @@ public class PlayerMove : MonoBehaviour
 
         //스페이스바로 오브젝트와의 상호작용
         if (Input.GetButtonDown("Jump") && scanObject != null)
-        {
-            if(scanObject.layer == LayerMask.NameToLayer("DummyObject"))
-                talkText.text = "나에겐 필요없는 것 같다... 다른걸 찾아보자.....";
-        }
+            manager.Execution(scanObject);
+
     }
     void FixedUpdate()
     {
@@ -88,7 +92,8 @@ public class PlayerMove : MonoBehaviour
 
         //레이캐스트 작동하는지 확인
         Debug.DrawRay(rigid.position, dirVec * 0.9f, new Color(1, 0, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.9f, LayerMask.GetMask("Object"));
+        int layerMask = (1 << LayerMask.NameToLayer("DummyObject")) + (1 << LayerMask.NameToLayer("Object"));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.9f, layerMask);
 
         if (rayHit.collider != null)//만약 뭔가 발견하면
         {
@@ -97,5 +102,7 @@ public class PlayerMove : MonoBehaviour
         else
             scanObject = null;
     }
+
+
 
 }
