@@ -79,7 +79,10 @@ public class PlayerMove : MonoBehaviour
 
         //스페이스바로 오브젝트와의 상호작용
         if (Input.GetButtonDown("Jump") && scanObject != null)
+        {
             manager.Execution(scanObject);
+            manager.QuestExecution(scanObject);
+        }
 
     }
     void FixedUpdate()
