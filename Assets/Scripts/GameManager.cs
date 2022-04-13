@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
             { 
                 questObject[i].SetActive(true);
             }
+            q1 = false;
         }
         else if(id == 105 && !q1)
         {
