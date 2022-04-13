@@ -78,13 +78,20 @@ public class PlayerMove : MonoBehaviour
             dirVec = Vector3.left;
 
         //스페이스바로 오브젝트와의 상호작용
-        if (Input.GetButtonDown("Jump") && scanObject != null)
+        if (Input.GetButtonDown("Jump"))
         {
-            manager.Execution(scanObject);
-            manager.QuestExecution(scanObject);
+            if (scanObject != null)
+            {
+                manager.Execution(scanObject);
+                manager.QuestExecution(scanObject);
+            }
+            else if (manager.textPanel.activeSelf)
+                manager.setTextPanel();
         }
 
     }
+
+
     void FixedUpdate()
     {
 
