@@ -17,12 +17,12 @@ public class PlayerMove : MonoBehaviour
     float v;
     Vector3 dirVec;
 
-    public Text talkText; //UI대화창 텍스트
-    public GameObject talkPanel;
+    //public Text talkText; //UI대화창 텍스트
+    //public GameObject talkPanel;
     public int textIndex = 0;//순차적으로 대화창을 출력하기위한 변수
     GameObject scanObject;
 
-
+    [SerializeField]
 
     private void Start()
     {
@@ -78,15 +78,21 @@ public class PlayerMove : MonoBehaviour
             dirVec = Vector3.left;
 
         //스페이스바로 오브젝트와의 상호작용
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !manager.isEnding)
         {
-            if (scanObject != null)
+
+             if (scanObject != null)
             {
                 manager.Execution(scanObject);
                 manager.QuestExecution(scanObject);
             }
             else if (manager.textPanel.activeSelf)
                 manager.setTextPanel();
+        }
+        else if (Input.GetButtonDown("Jump") && manager.isEnding)
+        {
+
+            manager.End();
         }
 
     }
@@ -101,7 +107,7 @@ public class PlayerMove : MonoBehaviour
         rigid.velocity = moveVec * Speed;
 
         //레이캐스트 작동하는지 확인
-        Debug.DrawRay(rigid.position, dirVec * 0.9f, new Color(1, 0, 0));
+        Debug.DrawRay(rigid.position, dirVec * 0.3f, new Color(1, 0, 0));
         int layerMask = (1 << LayerMask.NameToLayer("DummyObject")) + (1 << LayerMask.NameToLayer("Object"));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.9f, layerMask);
 
