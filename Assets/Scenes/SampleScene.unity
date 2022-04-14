@@ -11998,8 +11998,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035, y: 0}
-  m_SizeDelta: {x: 569.4102, y: 695.771}
+  m_AnchoredPosition: {x: -0.000061035, y: -259}
+  m_SizeDelta: {x: 448.4063, y: 695.771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478068795
 MonoBehaviour:
@@ -12023,10 +12023,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -12038,7 +12038,7 @@ MonoBehaviour:
     \uB098\uB294... \n\n\uC0B4\uAE30\uC704\uD574\uC11C \uBB34\uC5C7\uC774\uB4E0 \uD588\uB2E4.\n\n\uD558\uC9C0\uB9CC
     \uB098\uC5D0\uAC8C \uB2E4\uAC00\uC624\uB294 \uAC83\uC740 \uC8FD\uC74C \uBFD0\uC774\uC5C8\uB2E4...\n\n\uACB0\uAD6D
     \uD0C8\uCD9C\uD558\uC9C0 \uBABB\uD55C\uCC44\uB85C..... \uC774\uBC88 \uC0DD\uC740
-    \uC9C0\uB098\uAC14\uB2E4.\n\n\n\uC81C\uC791\uC790 : \uAE40\uC9C4\uC6B0\n\n\n\n\n\n\n-
+    \uC9C0\uB098\uAC14\uB2E4.\n\n\n\uC81C\uC791\uC790 : \uAE40\uC9C4\uC6B0\n\n\n\n\n\n\n\n\n\n-
     Pixel Art Top Down - Basic\n\n- TopDown 2D RPG BE3\n\n- Sound : https://pgtd.tistory.com/148\n"
 --- !u!222 &478068796
 CanvasRenderer:
@@ -12414,8 +12414,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 1920
+    height: 1080
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -13163,7 +13163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000041962, y: 1836}
+  m_AnchoredPosition: {x: 0.000019073, y: 1634}
   m_SizeDelta: {x: 183.8533, y: 55.2163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593842302
@@ -13188,10 +13188,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -13484,7 +13484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000041962, y: -189}
+  m_AnchoredPosition: {x: 0.00001907, y: -137}
   m_SizeDelta: {x: 183.8533, y: 55.2163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616087016
@@ -13509,10 +13509,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -59596,7 +59596,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: 2460, y: 400}
+  m_SizeDelta: {x: 1600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &832829107
 MonoBehaviour:
@@ -61416,8 +61416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.1576, y: 6.2314}
-  m_SizeDelta: {x: 2352.7273, y: 265.0601}
+  m_AnchoredPosition: {x: 0.0052, y: 3.1157}
+  m_SizeDelta: {x: 1454.5112, y: 306.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069865031
 MonoBehaviour:
@@ -61441,7 +61441,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b4b1ea18b089065458b22ac26a4f37bb, type: 3}
-    m_FontSize: 70
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
