@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         scanObject = scanObj;
         Object objData = scanObject.GetComponent<Object>();
 
-        if (objData.id >= 104 && objData.id <= 107)
+        if ((objData.id >= 104 && objData.id <= 107) || objData.id == 102)
             Q1Execution(objData.id);
         else if (objData.id == 204 || objData.id == 207)
             Q2Execution(objData.id);
@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour
                 questObject[i].SetActive(true);
             }
             q1 = false;
+        }
+        else if (id == 102)
+        {
+            SoundManager.instance.PlaySoundEffect("lockbox");
         }
         else if(id == 105 && !q1)
         {

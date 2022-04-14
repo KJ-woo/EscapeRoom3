@@ -95,6 +95,10 @@ public class PlayerMove : MonoBehaviour
             manager.End();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
 
